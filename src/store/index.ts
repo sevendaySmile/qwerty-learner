@@ -69,6 +69,9 @@ export const pronunciationIsTransReadAtom = atom((get) => get(pronunciationConfi
 export const randomConfigAtom = atomForConfig('randomConfig', {
   isOpen: false,
 })
+export const strictConfigAtom = atomForConfig('strictConfig', {
+  isOpen: false,
+})
 
 export const isShowPrevAndNextWordAtom = atomWithStorage('isShowPrevAndNextWord', true)
 

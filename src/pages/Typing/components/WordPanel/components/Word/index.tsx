@@ -19,6 +19,7 @@ import {
   isShowAnswerOnHoverAtom,
   isTextSelectableAtom,
   pronunciationIsOpenAtom,
+  strictConfigAtom,
   wordDictationConfigAtom,
 } from '@/store'
 import type { Word } from '@/typings'
@@ -48,6 +49,7 @@ export default function WordComponent({ word, onFinish }: { word: Word; onFinish
   const currentLanguage = useAtomValue(currentDictInfoAtom).language
   const currentLanguageCategory = useAtomValue(currentDictInfoAtom).languageCategory
   const currentChapter = useAtomValue(currentChapterAtom)
+  const strictConfig = useAtomValue(strictConfigAtom)
 
   const [showTipAlert, setShowTipAlert] = useState(false)
   const wordPronunciationIconRef = useRef<WordPronunciationIconRef>(null)
@@ -236,19 +238,33 @@ export default function WordComponent({ word, onFinish }: { word: Word; onFinish
 
   useEffect(() => {
     if (wordState.hasWrong) {
-      const timer = setTimeout(() => {
-        setWordState((state) => {
-          state.inputWord = ''
-          state.letterStates = new Array(state.letterStates.length).fill('normal')
-          state.hasWrong = false
-        })
-      }, 300)
+      if (strictConfig.isOpen) {
+        const timer = setTimeout(() => {
+          setWordState((state) => {
+            state.inputWord = ''
+            state.letterStates = new Array(state.letterStates.length).fill('normal')
+            state.hasWrong = false
+          })
+        }, 300)
 
-      return () => {
-        clearTimeout(timer)
+        return () => {
+          clearTimeout(timer)
+        }
+      } else {
+        const timer = setTimeout(() => {
+          setWordState((state) => {
+            state.letterStates[state.inputWord.length - 1] = 'normal'
+            state.inputWord = state.inputWord.slice(0, -1)
+            state.hasWrong = false
+          })
+        }, 100)
+
+        return () => {
+          clearTimeout(timer)
+        }
       }
     }
-  }, [wordState.hasWrong, setWordState])
+  }, [wordState.hasWrong, setWordState, strictConfig])
 
   useEffect(() => {
     if (wordState.isFinished) {

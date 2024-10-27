@@ -1,17 +1,34 @@
 import styles from './index.module.css'
-import { isIgnoreCaseAtom, isShowAnswerOnHoverAtom, isShowPrevAndNextWordAtom, isTextSelectableAtom, randomConfigAtom } from '@/store'
+import {
+  isIgnoreCaseAtom,
+  isShowAnswerOnHoverAtom,
+  isShowPrevAndNextWordAtom,
+  isTextSelectableAtom,
+  randomConfigAtom,
+  strictConfigAtom,
+} from '@/store'
 import { Switch } from '@headlessui/react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { useAtom } from 'jotai'
 import { useCallback } from 'react'
 
 export default function AdvancedSetting() {
+  const [strictConfig, setStrictConfig] = useAtom(strictConfigAtom)
   const [randomConfig, setRandomConfig] = useAtom(randomConfigAtom)
   const [isShowPrevAndNextWord, setIsShowPrevAndNextWord] = useAtom(isShowPrevAndNextWordAtom)
   const [isIgnoreCase, setIsIgnoreCase] = useAtom(isIgnoreCaseAtom)
   const [isTextSelectable, setIsTextSelectable] = useAtom(isTextSelectableAtom)
   const [isShowAnswerOnHover, setIsShowAnswerOnHover] = useAtom(isShowAnswerOnHoverAtom)
 
+  const onToggleStrict = useCallback(
+    (checked: boolean) => {
+      setStrictConfig((prev) => ({
+        ...prev,
+        isOpen: checked,
+      }))
+    },
+    [setStrictConfig],
+  )
   const onToggleRandom = useCallback(
     (checked: boolean) => {
       setRandomConfig((prev) => ({
@@ -53,6 +70,18 @@ export default function AdvancedSetting() {
     <ScrollArea.Root className="flex-1 select-none overflow-y-auto ">
       <ScrollArea.Viewport className="h-full w-full px-3">
         <div className={styles.tabContent}>
+          <div className={styles.section}>
+            <span className={styles.sectionLabel}>严格模式</span>
+            <span className={styles.sectionDescription}>开启后，输入错误时需要重新输入；关闭时，输入错误时从上一个字符开始输入</span>
+            <div className={styles.switchBlock}>
+              <Switch checked={strictConfig.isOpen} onChange={onToggleStrict} className="switch-root">
+                <span aria-hidden="true" className="switch-thumb" />
+              </Switch>
+              <span className="text-right text-xs font-normal leading-tight text-gray-600">{`严格模式已${
+                strictConfig.isOpen ? '开启' : '关闭'
+              }`}</span>
+            </div>
+          </div>
           <div className={styles.section}>
             <span className={styles.sectionLabel}>章节乱序</span>
             <span className={styles.sectionDescription}>开启后，每次练习章节中单词会随机排序。下一章节生效</span>
