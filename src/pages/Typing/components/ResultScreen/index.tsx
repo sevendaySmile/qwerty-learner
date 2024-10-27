@@ -246,18 +246,23 @@ const ResultScreen = () => {
                 {!isReviewMode && (
                   <>
                     <ShareButton />
-                    <IexportWords fontSize={18} className="cursor-pointer text-gray-500" onClick={exportWords}></IexportWords>
+                    <button onClick={exportWords} className="cursor-pointer" type="button" title="导出练习记录为xlsx文件">
+                      <IexportWords fontSize={18} className="cursor-pointer text-gray-500 hover:text-green-400" />
+                    </button>
                   </>
                 )}
-                <IconXiaoHongShu
-                  fontSize={15}
-                  className="cursor-pointer text-gray-500 hover:text-red-500 focus:outline-none"
+
+                <button
                   onClick={(e) => {
                     handleOpenInfoPanel('redBook')
                     e.currentTarget.blur()
                   }}
-                />
-
+                  className="cursor-pointer"
+                  type="button"
+                  title="小红书社区"
+                >
+                  <IconXiaoHongShu fontSize={15} className=" text-gray-500 hover:text-red-500 focus:outline-none" />
+                </button>
                 <button
                   onClick={(e) => {
                     handleOpenInfoPanel('donate')
@@ -282,7 +287,13 @@ const ResultScreen = () => {
                   <IconWechat fontSize={16} className="text-gray-500 hover:text-green-500 focus:outline-none" />
                 </button>
 
-                <a href="https://github.com/Kaiyiwing/qwerty-learner" target="_blank" rel="noreferrer" className="leading-[0px]">
+                <a
+                  href="https://github.com/Kaiyiwing/qwerty-learner"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="leading-[0px]"
+                  title="github链接"
+                >
                   <IconGithub fontSize={16} className="text-gray-500 hover:text-green-800 focus:outline-none" />
                 </a>
               </div>
