@@ -35,7 +35,7 @@ function Root() {
   useEffect(() => {
     const handleResize = () => {
       const isMobile = window.innerWidth <= 600
-      if (!isMobile) {
+      if (!isMobile && window.location.pathname === '/mobile') {
         window.location.href = '/'
       }
       setIsMobile(isMobile)
