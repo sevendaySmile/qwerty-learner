@@ -172,6 +172,7 @@ export default function SharePicDialog({ showState, setShowState, randomChoose }
               <div className="mx-4 mt-6 flex rounded-xl bg-white px-4 py-3 opacity-50 shadow-xl">
                 <DataBox data={state.timerData.time + ''} description="用时" />
                 <DataBox data={state.timerData.accuracy + '%'} description="正确率" />
+                <DataBox data={state.timerData.ipm + ''} description="IPM" />
                 <DataBox data={state.timerData.wpm + ''} description="WPM" />
               </div>
               <div className="ml-5 mt-4 self-start text-base text-gray-800">{currentDictInfo.name}</div>

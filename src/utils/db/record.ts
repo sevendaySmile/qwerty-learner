@@ -105,7 +105,9 @@ export class ChapterRecord implements IChapterRecord {
   get wpm() {
     return Math.round((this.wordCount / this.time) * 60)
   }
-
+  get ipm() {
+    return Math.round((this.correctCount / this.time) * 60)
+  }
   get inputAccuracy() {
     return Math.round((this.correctCount / this.correctCount + this.wrongCount) * 100)
   }

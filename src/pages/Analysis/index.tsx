@@ -7,7 +7,7 @@ import { isOpenDarkModeAtom } from '@/store'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import dayjs from 'dayjs'
 import { useAtom } from 'jotai'
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { useNavigate } from 'react-router-dom'
 import IconX from '~icons/tabler/x'
@@ -35,11 +35,10 @@ const Analysis = () => {
 
   useHotkeys('enter,esc', onBack, { preventDefault: true })
 
-  const { isEmpty, exerciseRecord, wordRecord, wpmRecord, accuracyRecord, wrongTimeRecord } = useWordStats(
+  const { isEmpty, exerciseRecord, wordRecord, wpmRecord, ipmRecord, accuracyRecord, wrongTimeRecord } = useWordStats(
     dayjs().subtract(1, 'year').unix(),
     dayjs().unix(),
   )
-
   return (
     <Layout>
       <div className="flex w-full flex-1 flex-col overflow-y-auto pl-20 pr-20 pt-20">
@@ -60,6 +59,9 @@ const Analysis = () => {
                 </div>
                 <div className="mx-4 my-8 h-80 w-auto overflow-hidden rounded-lg p-8 shadow-lg dark:bg-gray-700 dark:bg-opacity-50">
                   <LineCharts title="过去一年WPM趋势图" name="WPM" data={wpmRecord} />
+                </div>
+                <div className="mx-4 my-8 h-80 w-auto overflow-hidden rounded-lg p-8 shadow-lg dark:bg-gray-700 dark:bg-opacity-50">
+                  <LineCharts title="过去一年IPM趋势图" name="IPM" data={ipmRecord} />
                 </div>
                 <div className="mx-4 my-8 h-80 w-auto overflow-hidden rounded-lg p-8 shadow-lg dark:bg-gray-700 dark:bg-opacity-50">
                   <LineCharts title="过去一年正确率趋势图" name="正确率(%)" data={accuracyRecord} suffix="%" />

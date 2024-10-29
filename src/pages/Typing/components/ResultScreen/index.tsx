@@ -206,7 +206,7 @@ const ResultScreen = () => {
   )
 
   return (
-    <div className="fixed inset-0 z-30 overflow-y-auto">
+    <div className="fixed inset-0 z-30">
       <div className="absolute inset-0 bg-gray-300 opacity-80 dark:bg-gray-600"></div>
       <Transition
         show={true}
@@ -229,15 +229,16 @@ const ResultScreen = () => {
               <div className="flex flex-shrink-0 flex-grow-0 flex-col gap-3 px-4 sm:px-1 md:px-2 lg:px-4">
                 <RemarkRing remark={`${state.timerData.accuracy}%`} caption="正确率" percentage={state.timerData.accuracy} />
                 <RemarkRing remark={timeString} caption="章节耗时" />
+                <RemarkRing remark={state.timerData.ipm + ''} caption="IPM" />
                 <RemarkRing remark={state.timerData.wpm + ''} caption="WPM" />
               </div>
-              <div className="z-10 ml-6 flex-1 overflow-visible rounded-xl bg-indigo-50 dark:bg-gray-700">
-                <div className="customized-scrollbar z-20 ml-8 mr-1 flex h-80 flex-row flex-wrap content-start gap-4 overflow-y-auto overflow-x-hidden pr-7 pt-9">
+              <div className="z-10 ml-6 flex flex-1 flex-col overflow-visible rounded-xl bg-indigo-50 dark:bg-gray-700">
+                <div className="customized-scrollbar z-20 ml-8 mr-1 flex h-[calc(4*8rem-48px)] flex-row flex-wrap content-start gap-4 overflow-y-auto overflow-x-hidden pr-7 pt-9">
                   {wrongWords.map((word, index) => (
                     <WordChip key={`${index}-${word.name}`} word={word} />
                   ))}
                 </div>
-                <div className="align-center flex w-full flex-row justify-start rounded-b-xl bg-indigo-200 px-4 dark:bg-indigo-400">
+                <div className="align-center flex h-12 w-full flex-row justify-start rounded-b-xl bg-indigo-200 px-4 dark:bg-indigo-400">
                   <ConclusionBar mistakeLevel={mistakeLevel} mistakeCount={wrongWords.length} />
                 </div>
               </div>
