@@ -1,8 +1,8 @@
 import DictDetail from './DictDetail'
 import { useDictStats } from './hooks/useDictStats'
 import bookCover from '@/assets/book-cover.png'
+import Hint from '@/components/Hint'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import useIntersectionObserver from '@/hooks/useIntersectionObserver'
 import { currentDictIdAtom } from '@/store'
 import type { Dictionary } from '@/typings'
@@ -48,22 +48,11 @@ export default function DictionaryComponent({ dictionary }: Props) {
             >
               {dictionary.name}
             </h1>
-            <TooltipProvider>
-              <Tooltip delayDuration={400}>
-                <TooltipTrigger asChild>
-                  <p
-                    className={`mb-1 max-w-full truncate ${
-                      isSelected ? 'text-white' : 'textdelayDuration-gray-600 dark:text-gray-200'
-                    } whitespace-nowrap`}
-                  >
-                    {dictionary.description}
-                  </p>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{`${dictionary.description}`}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <Hint label={`${dictionary.description}`}>
+              <p className={`mb-1 max-w-full truncate ${isSelected ? 'text-white' : 'text-gray-600 dark:text-gray-200'} whitespace-nowrap`}>
+                {dictionary.description}
+              </p>
+            </Hint>
 
             <p className={`mb-0.5 font-bold  ${isSelected ? 'text-white' : 'text-gray-600 dark:text-gray-200'}`}>{dictionary.length} 词</p>
             <div className=" flex w-full items-center pt-2">

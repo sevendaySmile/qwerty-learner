@@ -2,7 +2,6 @@ import { DonatingCard } from '../DonatingCard'
 import { StickerButton } from '../DonatingCard/components/StickerButton'
 import redBookCode from '@/assets/redBook-code.jpg'
 import InfoPanel from '@/components/InfoPanel'
-import Tooltip from '@/components/Tooltip'
 import { infoPanelStateAtom } from '@/store'
 import type { InfoPanelType } from '@/typings'
 import { recordOpenInfoPanelAction } from '@/utils'
@@ -19,7 +18,6 @@ import IconWechat2 from '~icons/simple-icons/wechat'
 import IconWechat from '~icons/tabler/brand-wechat'
 import IconCoffee from '~icons/tabler/coffee'
 import IconTerminal2 from '~icons/tabler/terminal-2'
-import IconFlagChina from '~icons/twemoji/flag-china'
 
 const Footer: React.FC = () => {
   const [infoPanelState, setInfoPanelState] = useAtom(infoPanelStateAtom)
@@ -209,12 +207,6 @@ const Footer: React.FC = () => {
         >
           <IconMail fontSize={16} className="text-gray-500 hover:text-indigo-400 dark:text-gray-400 dark:hover:text-indigo-400" />
         </a>
-
-        <Tooltip content="中国大陆镜像">
-          <a href="https://kaiyiwing.gitee.io/qwerty-learner" target="_self" title="前往中国大陆镜像">
-            <IconFlagChina fontSize={16} />
-          </a>
-        </Tooltip>
 
         <button
           className="cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"

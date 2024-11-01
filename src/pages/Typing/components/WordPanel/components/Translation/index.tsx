@@ -1,4 +1,4 @@
-import Tooltip from '@/components/Tooltip'
+import Hint from '@/components/Hint'
 import { SoundIcon } from '@/components/WordPronunciationIcon/SoundIcon'
 import useSpeech from '@/hooks/useSpeech'
 import { fontSizeConfigAtom, isTextSelectableAtom, pronunciationConfigAtom } from '@/store'
@@ -35,9 +35,9 @@ export default function Translation({ trans, showTrans = true, onMouseEnter, onM
         {showTrans ? trans : '\u00A0'}
       </span>
       {isShowTransRead && showTrans && (
-        <Tooltip content="朗读释义" className="ml-3 h-5 w-5 cursor-pointer leading-7">
+        <Hint label="朗读释义">
           <SoundIcon animated={speaking} onClick={handleClickSoundIcon} className="h-5 w-5" />
-        </Tooltip>
+        </Hint>
       )}
     </div>
   )

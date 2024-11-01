@@ -1,10 +1,12 @@
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
-const Hint = ({ label, children, side, align, sideOffset, alignOffset, className }: HintProps) => {
+const Hint = ({ label, children, side, align, sideOffset, alignOffset, className, containerClassName = '' }: HintProps) => {
   return (
     <TooltipProvider>
-      <Tooltip delayDuration={100} defaultOpen>
-        <TooltipTrigger asChild>{children}</TooltipTrigger>
+      <Tooltip delayDuration={100}>
+        <TooltipTrigger asChild>
+          <div className={containerClassName}>{children}</div>
+        </TooltipTrigger>
         <TooltipContent side={side} align={align} sideOffset={sideOffset} alignOffset={alignOffset} className={className}>
           <p>{label}</p>
         </TooltipContent>
@@ -21,6 +23,7 @@ export interface HintProps {
   sideOffset?: number
   alignOffset?: number
   className?: string
+  containerClassName?: string
 }
 
 export default Hint

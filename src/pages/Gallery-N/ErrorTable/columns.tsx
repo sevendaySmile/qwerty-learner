@@ -1,6 +1,6 @@
 import type { TErrorWordData } from '../hooks/useErrorWords'
+import Hint from '@/components/Hint'
 import { Button } from '@/components/ui/button'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import type { ColumnDef } from '@tanstack/react-table'
 import PhArrowsDownUpFill from '~icons/ph/arrows-down-up-fill'
 import DeleteIcon from '~icons/weui/delete-filled'
@@ -67,16 +67,9 @@ export const errorColumns = (onDelete: (word: string) => Promise<void>): ColumnD
     size: 40,
     cell: ({ row }) => {
       return (
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger>
-              <DeleteIcon className="cursor-pointer" onClick={() => onDelete(row.original.word)} />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Delete Records</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <Hint label="删除记录">
+          <DeleteIcon className="cursor-pointer" onClick={() => onDelete(row.original.word)} />
+        </Hint>
       )
     },
   },

@@ -1,5 +1,5 @@
 import { TypingContext, TypingStateActionType } from '../../store'
-import Tooltip from '@/components/Tooltip'
+import Hint from '@/components/Hint'
 import { currentDictInfoAtom, wordDictationConfigAtom } from '@/store'
 import { CTRL } from '@/utils'
 import { useAtomValue } from 'jotai'
@@ -39,7 +39,7 @@ export default function PrevAndNextWord({ type }: LastAndNextWordProps) {
   return (
     <>
       {word ? (
-        <Tooltip content={`快捷键: ${shortCutKey}`}>
+        <Hint label={`快捷键: ${shortCutKey}`} className="text-xs">
           <div
             onClick={onClickWord}
             className="flex max-w-xs cursor-pointer select-none items-center text-gray-700 opacity-60 duration-200 ease-in-out hover:opacity-100 dark:text-gray-400"
@@ -60,7 +60,7 @@ export default function PrevAndNextWord({ type }: LastAndNextWordProps) {
             </div>
             {type === 'next' && <IconNext className="ml-4 shrink-0 grow-0 text-2xl" />}
           </div>
-        </Tooltip>
+        </Hint>
       ) : (
         <div />
       )}

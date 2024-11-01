@@ -1,5 +1,5 @@
 import { TypingContext, TypingStateActionType } from '../../store'
-import Tooltip from '@/components/Tooltip'
+import Hint from '@/components/Hint'
 import { randomConfigAtom } from '@/store'
 import { autoUpdate, offset, useFloating, useHover, useInteractions } from '@floating-ui/react'
 import { useAtomValue } from 'jotai'
@@ -32,17 +32,18 @@ export default function StartButton({ isLoading }: { isLoading: boolean }) {
   const { getReferenceProps, getFloatingProps } = useInteractions([hoverButton])
 
   return (
-    <Tooltip content={`${state.isTyping ? '暂停' : '开始'} （Enter）`} className="box-content h-7 w-8 px-6 py-1">
+    <Hint label={`${state.isTyping ? '暂停' : '开始'} （Enter）`} className="text-xs" containerClassName="relative">
+      <div className={`mx-2 h-9 w-20`}></div>
       <div
         ref={refs.setReference}
         {...getReferenceProps()}
         className={`${
           state.isTyping
-            ? 'bg-gray-400 shadow-gray-200 dark:bg-gray-600  dark:shadow-none'
+            ? 'bg-gray-400 shadow-gray-300 dark:bg-gray-600  dark:shadow-none'
             : 'bg-indigo-500 shadow-indigo-300 dark:shadow-indigo-500/60'
         } ${
           isShowReStartButton ? 'h-20' : 'h-auto'
-        } flex-column absolute left-0 top-0 w-20 rounded-lg shadow-lg transition-colors duration-200`}
+        } absolute left-2 top-0 w-20 flex-col overflow-hidden rounded-lg shadow-lg transition-colors duration-200`}
       >
         <button
           className={`${
@@ -55,7 +56,7 @@ export default function StartButton({ isLoading }: { isLoading: boolean }) {
           <span className="font-medium">{state.isTyping ? 'Pause' : 'Start'}</span>
         </button>
         {isShowReStartButton && (
-          <div className="absolute bottom-0 flex w-20 justify-center" ref={refs.setFloating} {...getFloatingProps()}>
+          <div className="absolute top-8 flex w-20 justify-center" ref={refs.setFloating} {...getFloatingProps()}>
             <button
               className={`${
                 state.isTyping ? 'bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-500 ' : 'bg-indigo-400 '
@@ -69,6 +70,6 @@ export default function StartButton({ isLoading }: { isLoading: boolean }) {
           </div>
         )}
       </div>
-    </Tooltip>
+    </Hint>
   )
 }

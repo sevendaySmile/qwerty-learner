@@ -2,7 +2,7 @@ import { LoadingWordUI } from './LoadingWordUI'
 import useGetWord from './hooks/useGetWord'
 import { currentRowDetailAtom } from './store'
 import type { groupedWordRecords } from './type'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import Hint from '@/components/Hint'
 import { idDictionaryMap } from '@/resources/dictionary'
 import { recordErrorBookAction } from '@/utils'
 import { useSetAtom } from 'jotai'
@@ -43,16 +43,9 @@ const ErrorRow: FC<IErrorRowProps> = ({ record, onDelete }) => {
           onDelete()
         }}
       >
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <DeleteIcon />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Delete Records</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <Hint label="删除" align="start">
+          <DeleteIcon />
+        </Hint>
       </span>
     </li>
   )

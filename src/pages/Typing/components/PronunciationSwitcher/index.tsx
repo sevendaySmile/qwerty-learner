@@ -1,4 +1,4 @@
-import Tooltip from '@/components/Tooltip'
+import Hint from '@/components/Hint'
 import { LANG_PRON_MAP } from '@/resources/soundResource'
 import { currentDictInfoAtom, phoneticConfigAtom, pronunciationConfigAtom } from '@/store'
 import type { PronunciationType } from '@/typings'
@@ -116,7 +116,9 @@ const PronunciationSwitcher = () => {
               e.target.blur()
             }}
           >
-            <Tooltip content="发音及音标切换">{currentLabel}</Tooltip>
+            <Hint label="发音及音标切换" className="text-xs">
+              {currentLabel}
+            </Hint>
           </Popover.Button>
 
           <Transition

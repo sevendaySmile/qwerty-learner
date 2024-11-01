@@ -12,8 +12,8 @@ import { useWordList } from './hooks/useWordList'
 import { TypingContext, TypingStateActionType, initialState, typingReducer } from './store'
 import { DonateCard } from '@/components/DonateCard'
 import Header from '@/components/Header'
+import Hint from '@/components/Hint'
 import StarCard from '@/components/StarCard'
-import Tooltip from '@/components/Tooltip'
 import { idDictionaryMap } from '@/resources/dictionary'
 import { currentChapterAtom, currentDictIdAtom, isReviewModeAtom, randomConfigAtom, reviewModeInfoAtom } from '@/store'
 import { IsDesktop, isLegal } from '@/utils'
@@ -138,16 +138,18 @@ const App: React.FC = () => {
           <PronunciationSwitcher />
           <Switcher />
           <StartButton isLoading={isLoading} />
-          <Tooltip content="跳过该词">
+          <Hint label="跳过该词" className="text-xs">
             <button
               className={`${
-                state.isShowSkip ? 'bg-orange-400' : 'invisible w-0 bg-gray-300 px-0 opacity-0'
-              } my-btn-primary transition-all duration-300 `}
+                state.isShowSkip
+                  ? 'w-20 bg-orange-400 shadow-lg shadow-orange-300 dark:shadow-orange-300/60'
+                  : 'invisible w-0 bg-gray-300 px-0 opacity-0'
+              } my-btn-primary mx-2 transition-all duration-300`}
               onClick={skipWord}
             >
               Skip
             </button>
-          </Tooltip>
+          </Hint>
         </Header>
         <div className="container mx-auto flex h-full flex-1 flex-col items-center justify-center pb-5">
           <div className="container relative mx-auto flex h-full flex-col items-center">

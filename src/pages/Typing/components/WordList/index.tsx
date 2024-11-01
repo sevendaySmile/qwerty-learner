@@ -1,7 +1,7 @@
 import { TypingContext, TypingStateActionType } from '../../store'
 import WordCard from './WordCard'
 import Drawer from '@/components/Drawer'
-import Tooltip from '@/components/Tooltip'
+import Hint from '@/components/Hint'
 import { currentChapterAtom, currentDictInfoAtom, isReviewModeAtom } from '@/store'
 import { Dialog } from '@headlessui/react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
@@ -38,15 +38,15 @@ export default function WordList() {
 
   return (
     <>
-      <Tooltip content="List" placement="top" className="!absolute left-5 top-[50%] z-20">
+      <Hint label="List" side="right" containerClassName="fixed left-0 top-[50%] z-20" className="text-md">
         <button
           type="button"
           onClick={openModal}
-          className="fixed left-0 top-[50%] z-20 rounded-lg rounded-l-none bg-indigo-50 px-2 py-3 text-lg hover:bg-indigo-200 focus:outline-none dark:bg-indigo-900 dark:hover:bg-indigo-800"
+          className=" rounded-lg rounded-l-none bg-indigo-50 px-2 py-3 text-lg hover:bg-indigo-200 focus:outline-none dark:bg-indigo-900 dark:hover:bg-indigo-800"
         >
           <ListIcon className="h-6 w-6 text-lg text-indigo-500 dark:text-white" />
         </button>
-      </Tooltip>
+      </Hint>
 
       <Drawer open={isOpen} onClose={closeModal} classNames="bg-stone-50 dark:bg-gray-900">
         <Dialog.Title as="h3" className="flex items-center justify-between p-4 text-lg font-medium leading-6 dark:text-gray-50">

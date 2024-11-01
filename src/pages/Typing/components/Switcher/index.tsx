@@ -7,44 +7,44 @@ import LoopWordSwitcher from './LoopWordSwitcher'
 import SoundSwitcher from './SoundSwitcher'
 import ToggleDarkButton from './ToggleDarkButton'
 import WordDictationSwitcher from './WordDictationSwitcher'
-import Tooltip from '@/components/Tooltip'
+import Hint from '@/components/Hint'
 import { CTRL } from '@/utils'
 
 export default function Switcher() {
   return (
     <div className="flex items-center justify-center gap-2">
-      <Tooltip content="音效设置">
+      <Hint label="音效设置">
         <SoundSwitcher />
-      </Tooltip>
+      </Hint>
 
-      <Tooltip className="h-7 w-7" content="设置单个单词循环">
+      <Hint label="设置单个单词循环">
         <LoopWordSwitcher />
-      </Tooltip>
+      </Hint>
 
-      <Tooltip className="h-7 w-7" content={`开关默写模式（${CTRL} + V）`}>
+      <Hint label={`开关默写模式（${CTRL} + V）`}>
         <WordDictationSwitcher />
-      </Tooltip>
-      <Tooltip className="h-7 w-7" content={`开关释义显示（${CTRL} + Shift + V）`}>
+      </Hint>
+      <Hint label={`开关释义显示（${CTRL} + Shift + V）`}>
         <ChangeTransVisibleButton />
-      </Tooltip>
+      </Hint>
 
-      <Tooltip content="错题本">
+      <Hint label="错题本">
         <ErrorBookButton />
-      </Tooltip>
+      </Hint>
 
-      <Tooltip className="h-7 w-7" content="查看数据统计">
+      <Hint label="查看数据统计">
         <AnalysisButton />
-      </Tooltip>
+      </Hint>
 
-      <Tooltip className="h-7 w-7" content="开关深色模式">
+      <Hint label="开关深色模式">
         <ToggleDarkButton />
-      </Tooltip>
-      <Tooltip className="h-7 w-7" content="指法图示">
+      </Hint>
+      <Hint label="指法图示">
         <HandPositionIllustration></HandPositionIllustration>
-      </Tooltip>
-      <Tooltip content="设置">
+      </Hint>
+      <Hint label="设置">
         <Setting />
-      </Tooltip>
+      </Hint>
     </div>
   )
 }
