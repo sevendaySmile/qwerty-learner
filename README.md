@@ -24,6 +24,7 @@
 <div align=center>
 <img  src="docs/Screenshot.png"/>
 </div>
+
 ## 前言
 
 站在[巨人的肩膀](https://github.com/RealKai42/qwerty-learner)上，准备添加一些新功能，会更着重于练习打字而非外语学习上
