@@ -5,7 +5,7 @@ import ConclusionBar from './ConclusionBar'
 import RemarkRing from './RemarkRing'
 import WordChip from './WordChip'
 import styles from './index.module.css'
-import Tooltip from '@/components/Tooltip'
+import Hint from '@/components/Hint'
 import {
   currentChapterAtom,
   currentDictInfoAtom,
@@ -302,48 +302,40 @@ const ResultScreen = () => {
             <div className="mt-10 flex w-full justify-center gap-5 px-5 text-xl">
               {!isReviewMode && (
                 <>
-                  <Tooltip content="快捷键：shift + enter">
+                  <Hint label="快捷键：shift + enter" className="text-xs">
                     <button
                       className="my-btn-primary h-12 border-2 border-solid border-gray-300 bg-white text-base text-gray-700 dark:border-gray-700 dark:bg-gray-600 dark:text-white dark:hover:bg-gray-700"
                       type="button"
                       onClick={dictationButtonHandler}
-                      title="默写本章节"
                     >
                       默写本章节
                     </button>
-                  </Tooltip>
-                  <Tooltip content="快捷键：space">
+                  </Hint>
+                  <Hint label="快捷键：space" className="text-xs">
                     <button
                       className="my-btn-primary h-12 border-2 border-solid border-gray-300 bg-white text-base text-gray-700 dark:border-gray-700 dark:bg-gray-600 dark:text-white dark:hover:bg-gray-700"
                       type="button"
                       onClick={repeatButtonHandler}
-                      title="重复本章节"
                     >
                       重复本章节
                     </button>
-                  </Tooltip>
+                  </Hint>
                 </>
               )}
               {!isLastChapter && !isReviewMode && (
-                <Tooltip content="快捷键：enter">
+                <Hint label="快捷键：enter" className="text-xs">
                   <button
                     className={`{ isLastChapter ? 'cursor-not-allowed opacity-50' : ''} my-btn-primary h-12 text-base font-bold `}
                     type="button"
                     onClick={nextButtonHandler}
-                    title="下一章节"
                   >
                     下一章节
                   </button>
-                </Tooltip>
+                </Hint>
               )}
 
               {isReviewMode && (
-                <button
-                  className="my-btn-primary h-12 text-base font-bold"
-                  type="button"
-                  onClick={onNavigateToGallery}
-                  title="练习其他章节"
-                >
+                <button className="my-btn-primary h-12 text-base font-bold" type="button" onClick={onNavigateToGallery}>
                   练习其他章节
                 </button>
               )}
